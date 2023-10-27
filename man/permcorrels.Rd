@@ -1,0 +1,60 @@
+\name{Permutation p-value for many correlation coefficients}
+\alias{permcorrels}
+\title{
+Permutation p-value for many correlation coefficients
+}
+
+\description{
+Permutation p-value for many correlation coefficients.
+}
+
+\usage{
+permcorrels(y, x, B = 999)
+}
+
+\arguments{
+\item{y}{
+A numerical vector.
+}
+\item{x}{
+A numerical matrix with many columns.
+}
+\item{B}{
+The number of bootstrap samples to generate.
+}
+}
+
+\details{
+This is the same function as \code{\link{correls}}, only this time the p-values are produced via permutations and no confidence intervals are produced.
+}
+
+\value{
+A matrix with 2 columns, the correlations and their permutation based p-values.
+}
+
+%\references{
+%
+%}
+
+\author{
+Michail Tsagris
+
+R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
+}
+
+%\note{
+%%  ~~further notes~~
+%}
+
+\seealso{
+\code{ \link{permcor}, \link{correls}
+}
+}
+
+\examples{
+y <- rnorm(40)
+x <- matrix(rnorm(40 * 1000), ncol = 1000)
+a <- permcorrels(y, x )
+}
+
+

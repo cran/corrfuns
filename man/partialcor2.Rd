@@ -1,0 +1,82 @@
+\name{Partial correlation between two variables}
+\alias{partialcor2}
+\title{
+Partial correlation between two variables
+}
+
+\description{
+Partial correlation between two variables.
+}
+
+\usage{
+partialcor2(y, x, z, type = "pearson", rho = 0, alpha = 0.05)
+}
+
+\arguments{
+\item{y}{
+A numerical vector.
+}
+\item{x}{
+A numerical vector.
+}
+\item{z}{
+A numerical vector or a numerical matrix.
+}
+\item{type}{
+The type of partial correlation coefficient to compute, "pearson" or "spearman".
+}
+\item{rho}{
+The hypothesized value of the true partial correlation.
+}
+\item{alpha}{
+The significance level.
+}
+}
+
+\details{
+Suppose you want to calculate the correlation coefficient between two variables controlling for the effect of (or conditioning on) one or more other variables. So you cant to calculate \eqn{\hat{\rho}\left(X,Y|{\bf Z}\right)}, where \eqn{\bf Z} is a matrix, since it does not have to be just one variable. This idea was captures by Ronald Fisher some years ago. To calculate it, one can use linear regression as follows.
+
+1. Calculate the residuals \eqn{\hat{e}_x} from the linear regression \eqn{X=a+bZ}.
+
+2. Calculate the residuals \eqn{\hat{e}_y} from the linear regression \eqn{Y=c+dZ}.
+
+3. Calculate the correlation between \eqn{\hat{e}_x} and \eqn{\hat{e}_y}. This is the partial correlation coefficient between \eqn{X} and \eqn{Y} controlling for \eqn{\bf Z}.
+
+The standard error of the Fisher's transformation of the sample partial correlation is Anderson (2003):
+\eqn{\text{SE}\left(\frac{1}{2}\log{\frac{1+\hat{\rho}\left(X,Y|{\bf Z}\right)}{1-\hat{\rho}\left(X,Y|{\bf Z}\right)}}\right)=\frac{1}{n-d-3}}, where \eqn{n} is the sample size and \eqn{d} is the number of variables upon which we control. The standard error is very similar to the one of the classical correlation coefficient. In fact, the latter one is a special case of the first when \eqn{d=0} and thus there is no variable whose effect is to be controlled.
+}
+
+\value{
+A list including:
+\item{result}{
+The partial correlation coefficient and the p-value for the test of zero partial correlation.
+}
+\item{ci}{The asymptotic \eqn{(1-\alpha)\%} confidence interval for the true partial correlation coefficient.
+}
+}
+
+%\references{
+%
+%}
+
+\author{
+Michail Tsagris
+
+R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
+}
+
+%\note{
+%%  ~~further notes~~
+%}
+
+\seealso{
+\code{ \link{partialcor}, \link{pcormat}
+}
+}
+
+\examples{
+x <- iris[, 1:4]
+partialcor2(x[, 1], x[, 2], x[, 3:4])
+}
+
+

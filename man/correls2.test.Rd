@@ -1,0 +1,70 @@
+\name{Hypothesis test for equality of two correlation coefficients}
+\alias{correls2.test}
+\title{
+Hypothesis test for equality of two correlation coefficients
+}
+
+\description{
+Hypothesis test for equality of two correlation coefficients.
+}
+
+\usage{
+correls2.test(r1, r2, n1, n2, type = "pearson")
+}
+
+\arguments{
+\item{r1}{
+The value of the first correlation coefficient.
+}
+\item{r2}{
+The value of the second correlation coefficient.
+}
+\item{n1}{
+The sample size of the first sample from which the first correlation coefficient was computed.
+}
+\item{n2}{
+The sample size of the second sample from which the first correlation coefficient was computed.
+}
+\item{type}{
+The type of correlation coefficients, "pearson" or "spearman".
+}
+}
+
+\details{
+The test statistic for the hypothesis of equality of two correlation coefficients is the following:
+\deqn{
+Z=\frac{\hat{z}_1-\hat{z}_2}{\sqrt{1/\left(n1-3\right)+1/\left(n2-3\right)}},
+}
+where \eqn{\hat{z}_1} and \eqn{\hat{z}_2} denote the Fisher's transformation (see \code{\link{correl}} applied to the two correlation coefficients and \eqn{n_1} and \eqn{n_2} denote the  sample sizes of the two correlation coefficients. The denominator is the sum of the variances of the two coefficients and as you can see we used a different variance estimator than the one we used before. This function performs hypothesis testing for the equality of two correlation coefficients. The result is the calculated p-value from the standard normal distribution.
+}
+
+\value{
+The test statistic and its associated p-value for the test of equal correlations.
+}
+
+%\references{
+%
+%}
+
+\author{
+Michail Tsagris
+
+R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
+}
+
+%\note{
+%%  ~~further notes~~
+%}
+
+\seealso{
+\code{ \link{correl}, \link{correls}
+}
+}
+
+\examples{
+y <- rnorm(40)
+x <- matrix(rnorm(40 * 1000), ncol = 1000)
+a <- correls(y, x )
+}
+
+
