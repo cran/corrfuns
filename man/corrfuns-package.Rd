@@ -15,8 +15,8 @@ written using a \bold{for} loop and a \bold{vectorised} version.
 \tabular{ll}{
 Package: \tab corrfuns\cr
 Type: \tab Package\cr
-Version: \tab 1.0 \cr
-Date: \tab 2023-10-26\cr
+Version: \tab 1.2 \cr
+Date: \tab 2025-01-08\cr
 License: \tab GPL-2\cr
 }
 }

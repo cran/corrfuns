@@ -4,26 +4,18 @@ permcor <- function(x, B = 999, fast = TRUE) {
     res <- Rfast::permcor(x[, 1], x[, 2], R = B)
   } else {
     n <- dim(x)[1]
-    x1 <- x[, 1]      ;     x2 <- x[, 2]
-    m1 <- sum(x1)     ;     m12 <- sum(x1^2)
-    m2 <- sum(x2)     ;     m22 <- sum(x2^2)
+    x1 <- x[, 1]      ;   x2 <- x[, 2]
+    m1 <- sum(x1)     ;   m2 <- sum(x2)
     up <-  m1 * m2 / n
-    down <- sqrt( (m12 - m1^2 / n) * (m22 - m2^2 / n) )
-    r <- ( sum(x1 * x2) - up) / down
-    test <- log( (1 + r) / (1 - r) )  ## test statistic
+    test <- sum(x1 * x2) - up   ## test statistic
     R <- round( sqrt(B) )
-    y1 <- matrix(0, n, R)
-    y2 <- matrix(0, n, R)
-    for (i in 1:R) {
-      y1[, i] <- sample(x1, n)
-      y2[, i] <- sample(x2, n)
-    }
-    sxy <- crossprod(y1, y2)
-    rb <- (sxy - up) / down
-    tb <- log( (1 + rb) / (1 - rb) )  ## test statistic
+    xp <- Rfast::colShuffle( matrix(x1, nrow = n, ncol = R) )
+    yp <- Rfast::colShuffle( matrix(x2, nrow = n, ncol = R) )
+    sxy <- crossprod(xp, yp)
+    tb <- sxy - up ## the test statistic
     pvalue <- ( sum( abs(tb) > abs(test) ) + 1 ) / (R^2 + 1)  ## permutation p-value
-    res <- c( r, pvalue )
-    names(res) <- c('correlation', 'p-value')
+    res <- c( test, pvalue )
+    names(res) <- c('stat', 'p-value')
   }
   res
 }

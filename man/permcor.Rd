@@ -53,7 +53,7 @@ R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
 %}
 
 \seealso{
-\code{ \link{bootcor}
+\code{ \link{bootcor}, \link{correl}, \link{el.cor.test}
 }
 }
 

@@ -11,7 +11,7 @@ permcor2 <- function(x, B = 999) {
   yb1 <- numeric(B) + m1  ;  y1 <- numeric(B) + m12
   m2 <- sum(x2) / n       ;   m22 <- sum(x2^2)
   yb2 <- numeric(B) + m2  ;  y2 <- numeric(B) + m22
-  sxy <- Rfast::eachcol.apply(x1,x2)
+  sxy <- Rfast::eachcol.apply(x1, x2)
   rb <- (sxy - n * yb1 * yb2) / sqrt( (y1 - n * yb1^2) * (y2 - n * yb2^2) )
   tb <- 0.5 * log( (1 + rb)/(1 - rb) )  ## test statistic
   pvalue <- ( sum( abs(tb) > abs(test) ) + 1 ) / (B + 1)  ## permutation p-value

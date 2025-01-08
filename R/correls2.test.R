@@ -9,7 +9,7 @@ correls2.test <- function(r1, r2, n1, n2, type = "pearson") {
   } else if (type == "spearman") {
     test <- (z1 - z2) / sqrt( 1.029563/(n1 - 3) + 1.029563 / (n2 - 3) )  ## test statistic
   }
-  pvalue <- 2 * pnorm( -abs(test) )  ## p-value calculation
+  pvalue <- 2 * pnorm( abs(test), lower.tail = FALSE )  ## p-value calculation
   result <- c(test, pvalue)
   result <- c("test", "p-value")
   result

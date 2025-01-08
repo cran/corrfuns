@@ -1,9 +1,10 @@
 #useDynLib(pchc, .registration = TRUE)
 
 importFrom("Rfast", colmeans, colsums, rowsums, eachcol.apply,
-           standardise, permcor)
+           standardise, permcor, Var)
+importFrom("Rfast2", Sample)
 importFrom("stats", cor, qnorm, pt, cov, pnorm, lm, resid,
-           cov2cor, .lm.fit, qt, runif)
+           cov2cor, .lm.fit, qt, runif, pchisq)
 importFrom("graphics", abline, par, hist)
 
 exportPattern("^[[:alpha:]]+")

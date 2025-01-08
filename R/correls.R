@@ -15,7 +15,7 @@ correls <- function(y, x, type = "pearson", rho = 0, alpha = 0.05) {
   }
 
   test <- as.vector( (zh1 - zh0) / se ) ## test statistic
-  pvalue <-  2 * ( pt( -abs(test), n - 3 ) )  ## p-value
+  pvalue <-  2 * pt( abs(test), n - 3, lower.tail = FALSE )  ## p-value
   b1 <- zh1 - qt(1 - alpha/2, n - 3) * se
   b2 <- zh1 + qt(1 - alpha/2, n - 3) * se
   ca <- cbind(b1 ,b2)

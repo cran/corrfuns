@@ -15,7 +15,7 @@ correl <- function(y, x, type = "pearson", rho = 0, alpha = 0.05) {
   }
 
   test <- (zh1 - zh0)/se  ## test statistic
-  pvalue <- 2 * ( 1 - pt( abs(test), n - 3 ) )  ## p-value
+  pvalue <- 2 * pt( abs(test), n - 3, lower.tail = FALSE )  ## p-value
   zL <- zh1 - qt(1 - alpha/2, n - 3) * se
   zH <- zh1 + qt(1 - alpha/2, n - 3) * se
   fishL <- ( expm1(2 * zL) ) / (exp(2 * zL) + 1)  ## lower confidence limit
